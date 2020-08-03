@@ -6,9 +6,12 @@ rows_list = ["8", "7", "6", "5", "4", "3", "2", "1"]
 columns_list = ["a", "b", "c", "d", "e", "f", "g", "h"]
 
 
-def generate_coordinates():
+def generate_coordinates(previous_coordinates):
     coordinates = random.choice(columns_list) + random.choice(rows_list)
-    return coordinates
+    if previous_coordinates and previous_coordinates == coordinates:
+        return random.choice(columns_list) + random.choice(rows_list)
+    else:
+        return coordinates
 
 
 class Game:
@@ -46,7 +49,12 @@ class Guess:
     #     self.created_timestamp = datetime.now().microsecond
 
     def __init__(self):
-        self.coordinates_to_guess = generate_coordinates()
+        if self.coordinates_to_guess:
+            self.coordinates_to_guess = generate_coordinates(
+                self.coordinates_to_guess)
+        else:
+            self.coordinates_to_guess = generate_coordinates('')
+
         self.created_timestamp = datetime.now().microsecond
 
     @property
