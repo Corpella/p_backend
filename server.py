@@ -11,7 +11,7 @@ game_instances = {}
 
 @app.route('/get_test')
 def get_test():
-    return 'Porca madonna de li compiuter de cristo'
+    return 'Mannaggia li compiuter de cristo'
 
 
 @app.route('/start_game', methods=["GET"])
